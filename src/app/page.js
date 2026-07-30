@@ -18,7 +18,7 @@ export default function Home() {
           <a href="#portfolio">Portfolio</a>
           <a href="#about">Chi Siamo</a>
           <a href="#contact">Contatti</a>
-          <a href="/admin" className={styles.loginBtn}>Area Admin</a>
+          <a href="/login" className={styles.loginBtn}>Area Admin</a>
         </div>
       </nav>
 
@@ -112,7 +112,7 @@ export default function Home() {
             <div className={styles.portfolioImagePlaceholder}>🖨️ Tessere Club 3D</div>
             <div className={styles.portfolioInfo}>
               <h4>Fidelizzazione Sportiva</h4>
-              <p>Tessere magnetiche stampate in 3D per i soci VIP di un club locale.</p>
+              <p>Tessere magnetiche stampate in 3D per i soci di un club locale.</p>
             </div>
           </motion.div>
           <motion.div className={styles.portfolioItem} whileHover={{ scale: 1.02 }}>
@@ -239,7 +239,15 @@ export default function Home() {
             </div>
           </div>
 
-          <a href="mailto:viclo4961@gmail.com" className={styles.primaryBtn} style={{ marginTop: '2rem' }}>Blocca il tuo Slot Ora</a>
+          <a 
+            href="https://wa.me/393517746110?text=Ciao%20ragazzi!%20Vorrei%20bloccare%20uno%20slot%20con%20VicLo%20Lab." 
+            className={styles.primaryBtn} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style={{ marginTop: '2rem' }}
+          >
+            Blocca il tuo Slot su WhatsApp
+          </a>
         </motion.div>
       </section>
       
