@@ -18,7 +18,6 @@ export default function Home() {
           <a href="#portfolio">Portfolio</a>
           <a href="#about">Chi Siamo</a>
           <a href="#contact">Contatti</a>
-          <a href="/login" className={styles.loginBtn}>Area Admin</a>
         </div>
       </nav>
 
@@ -253,6 +252,9 @@ export default function Home() {
       
       <footer className={styles.footer}>
         <p>&copy; 2026 VicLo Lab di Lorenzo Monaco & Valentin Victor Coteanu. Tutti i diritti riservati.</p>
+        <div style={{ marginTop: '1rem' }}>
+          <a href="/login" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textDecoration: 'underline' }}>Area Riservata Staff</a>
+        </div>
       </footer>
     </main>
   );
