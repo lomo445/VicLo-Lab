@@ -3,7 +3,7 @@ import { createClient } from '@/utils/supabase/server'
 import styles from './admin.module.css'
 
 export default async function AdminDashboard() {
-  const supabase = createClient()
+  const supabase = await createClient()
   
   const { data: { user } } = await supabase.auth.getUser()
 
