@@ -1,65 +1,258 @@
-import Image from "next/image";
+'use client';
+
+import { motion } from 'framer-motion';
+import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className={styles.main}>
+      {/* FOMO Top Banner */}
+      <div className={styles.fomoBanner}>
+        🔥 <strong>Attenzione:</strong> Accettiamo solo 3 nuove collaborazioni per questo mese. <a href="#contact">Prenota il tuo slot ora!</a>
+      </div>
+
+      <nav className={`${styles.nav} glass`}>
+        <div className={styles.logo}>VicLo <span className="gradient-text">Lab</span></div>
+        <div className={styles.navLinks}>
+          <a href="#services">Servizi</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#about">Chi Siamo</a>
+          <a href="#contact">Contatti</a>
+          <a href="/admin" className={styles.loginBtn}>Area Admin</a>
+        </div>
+      </nav>
+
+      <section className={styles.hero}>
+        <motion.div 
+          className={styles.heroContent}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+        >
+          <motion.div 
+            className={styles.badge}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+          >
+            🚀 I contenuti che convertono di più nel 2026
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            I Tuoi Competitor Stanno Già Usando i Droni. E Tu?
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            L'attenzione del cliente è tutto. Dalle <strong>riprese drone spettacolari</strong> per vendere i tuoi immobili in metà tempo, alle <strong>tessere fedeltà stampate in 3D</strong> per il tuo club, fino a <strong>menu NFC</strong> e <strong>bomboniere high-tech</strong>. Uniamo creatività visiva e innovazione per farti dominare il tuo settore. Tu cosa aspetti?
+          </motion.p>
+          <motion.div 
+            className={styles.ctaWrapper}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            <a href="#contact" className={styles.primaryBtn}>Voglio Dominare il Mercato</a>
+            <span className={styles.urgencyText}>⚡ Solo 3 posti rimasti per questo mese!</span>
+          </motion.div>
+        </motion.div>
+        
+        <div className={styles.glowOrb1}></div>
+        <div className={styles.glowOrb2}></div>
+      </section>
+
+      {/* Services Details Section */}
+      <section id="services" className={styles.servicesSection}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Smetti di perdere clienti.</h2>
+          <p className={styles.sectionSubtitle}>Non offriamo semplici servizi, costruiamo armi di marketing. Ecco come trasformiamo i tuoi contatti in clienti paganti con attrezzatura DJI e Apple di ultima generazione.</p>
+        </div>
+        
+        <div className={styles.servicesGrid}>
+          {servicesList.map((service, idx) => (
+            <motion.div 
+              key={idx}
+              className={`${styles.serviceCard} glass`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.05, translateY: -10 }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <div className={styles.serviceIcon}>{service.icon}</div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className={styles.portfolioSection}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>I Risultati Parlano.</h2>
+          <p className={styles.sectionSubtitle}>Guarda alcuni dei nostri lavori recenti. Riprese drone cinematiche, stampe 3D millimetriche e design NFC.</p>
+        </div>
+        
+        <div className={styles.portfolioGrid}>
+          {/* Mockup Portfolio Items - Verranno poi caricati da Supabase */}
+          <motion.div className={styles.portfolioItem} whileHover={{ scale: 1.02 }}>
+            <div className={styles.portfolioImagePlaceholder}>🚁 Ripresa Villa di Lusso</div>
+            <div className={styles.portfolioInfo}>
+              <h4>Ripresa Drone Immobiliare</h4>
+              <p>Tour aereo per una villa con piscina. Venduta in 7 giorni.</p>
+            </div>
+          </motion.div>
+          <motion.div className={styles.portfolioItem} whileHover={{ scale: 1.02 }}>
+            <div className={styles.portfolioImagePlaceholder}>🖨️ Tessere Club 3D</div>
+            <div className={styles.portfolioInfo}>
+              <h4>Fidelizzazione Sportiva</h4>
+              <p>Tessere magnetiche stampate in 3D per i soci VIP di un club locale.</p>
+            </div>
+          </motion.div>
+          <motion.div className={styles.portfolioItem} whileHover={{ scale: 1.02 }}>
+            <div className={styles.portfolioImagePlaceholder}>📱 Menu NFC Ristorante</div>
+            <div className={styles.portfolioInfo}>
+              <h4>Menu Smart Contactless</h4>
+              <p>Design in legno stampato 3D con chip NFC per ordinazioni istantanee ai tavoli.</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about" className={styles.aboutSection}>
+        <div className={`${styles.aboutContainer} glass`}>
+          <motion.div 
+            className={styles.aboutContent}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2>Chi Siamo: <span className="gradient-text">VicLo Lab</span></h2>
+            <p className={styles.aboutText}>
+              Dietro ogni progetto di successo ci sono persone affamate di innovazione. Siamo <strong>Lorenzo Monaco</strong> e <strong>Valentin Victor Coteanu</strong>. Non siamo la classica e noiosa agenzia: siamo un laboratorio creativo, giovane, dinamico e implacabile.
+            </p>
+            <p className={styles.aboutText}>
+              Lavoriamo su commissione e copriamo qualsiasi tipologia di evento. Dalla precisione millimetrica della stampa 3D (bomboniere, gadget esclusivi) all'adrenalina pura del drone shooting. Uniamo creatività e alta tecnologia per trasformare la tua idea in qualcosa che i tuoi clienti non potranno ignorare.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Analytics / Proof Section */}
+      <section className={styles.statsSection}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>I Dati Non Mentono.</h2>
+          <p className={styles.sectionSubtitle}>Smettila di sperare. Inizia a misurare. Ecco cosa succede quando uniamo contenuti di alta qualità e innovazione tech.</p>
+        </div>
+        
+        <div className={`${styles.graphContainer} glass`}>
+          <div className={styles.graphRow}>
+            <div className={styles.graphLabel}>Visualizzazioni Media (Post Standard)</div>
+            <div className={styles.graphBarTrack}>
+              <motion.div 
+                className={styles.graphBarRed}
+                initial={{ width: 0 }}
+                whileInView={{ width: "25%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, delay: 0.2 }}
+              >
+                <span>25%</span>
+              </motion.div>
+            </div>
+          </div>
+          <div className={styles.graphRow}>
+            <div className={styles.graphLabel}>Visualizzazioni con Drone & Video Premium (VicLo Lab)</div>
+            <div className={styles.graphBarTrack}>
+              <motion.div 
+                className={styles.graphBarGreen}
+                initial={{ width: 0 }}
+                whileInView={{ width: "95%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, delay: 0.5 }}
+              >
+                <span>+380% 🚀</span>
+              </motion.div>
+            </div>
+          </div>
+          
+          <div className={styles.graphRow} style={{ marginTop: '2rem' }}>
+            <div className={styles.graphLabel}>Ritorno Clienti (Metodi Tradizionali)</div>
+            <div className={styles.graphBarTrack}>
+              <motion.div 
+                className={styles.graphBarRed}
+                initial={{ width: 0 }}
+                whileInView={{ width: "30%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, delay: 0.8 }}
+              >
+                <span>30%</span>
+              </motion.div>
+            </div>
+          </div>
+          <div className={styles.graphRow}>
+            <div className={styles.graphLabel}>Ritorno con Tessere 3D & NFC (VicLo Lab)</div>
+            <div className={styles.graphBarTrack}>
+              <motion.div 
+                className={styles.graphBarBlue}
+                initial={{ width: 0 }}
+                whileInView={{ width: "92%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, delay: 1.1 }}
+              >
+                <span>92% 🔥</span>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final FOMO & Contact Section */}
+      <section id="contact" className={styles.contactSection}>
+        <div className={styles.glowOrb3}></div>
+        <motion.div 
+          className={styles.contactContent}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+        >
+          <h2 className={styles.fomoTitle}>I tuoi clienti non aspettano.</h2>
+          <h2 className={styles.fomoTitleSecondary}>I tuoi competitor non dormono.</h2>
+          <p className={styles.contactSubtitle}>
+            Il mercato premia chi agisce veloce. Allora, <strong>iniziamo a collaborare</strong> o preferisci continuare a guardare gli altri rubarti i clienti?
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          
+          <div className={`${styles.contactCards} glass`}>
+            <div className={styles.contactItem}>
+              <span className={styles.icon}>✉️</span>
+              <a href="mailto:viclo4961@gmail.com">viclo4961@gmail.com</a>
+            </div>
+            <div className={styles.contactItem}>
+              <span className={styles.icon}>📞</span>
+              <a href="tel:3517746110">Lorenzo: +39 351 774 6110</a>
+            </div>
+          </div>
+
+          <a href="mailto:viclo4961@gmail.com" className={styles.primaryBtn} style={{ marginTop: '2rem' }}>Blocca il tuo Slot Ora</a>
+        </motion.div>
+      </section>
+      
+      <footer className={styles.footer}>
+        <p>&copy; 2026 VicLo Lab di Lorenzo Monaco & Valentin Victor Coteanu. Tutti i diritti riservati.</p>
+      </footer>
+    </main>
   );
 }
+
+const servicesList = [
+  { icon: "📸", title: "Immobiliare Premium", description: "Foto interne ed esterne ultra-dettagliate e video presentazioni che seguono i trend di TikTok e IG. Fai vendere le tue case al doppio della velocità." },
+  { icon: "🚁", title: "Riprese Drone Cinematiche", description: "Ispezioni tetti e riprese dall'alto che lasciano i clienti a bocca aperta. Droni DJI ad alta risoluzione." },
+  { icon: "🖨️", title: "Stampa 3D & Fidelizzazione", description: "Tessere fedeltà personalizzate, bomboniere hi-tech e stand di design stampati in 3D per raccogliere recensioni in sede." },
+  { icon: "📱", title: "Menu Digitali & Smart NFC", description: "Ristorante? Digitalizzati oggi. Menu veloci, belli e contactless. Portachiavi NFC e smart object per interagire all'istante." },
+];
